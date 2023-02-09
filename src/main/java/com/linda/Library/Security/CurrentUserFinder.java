@@ -1,7 +1,7 @@
 package com.linda.Library.Security;
 
-import com.linda.Library.Service.UserModelService;
-import com.linda.Library.UserModel;
+import com.linda.Library.Service.UserService;
+import com.linda.Library.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class CurrentUserFinder {
 
    @Autowired
-    UserModelService userModelService;
+   UserService userModelService;
 
 
 
@@ -19,9 +19,9 @@ public class CurrentUserFinder {
         UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = details.getUsername();
         long userId = -1;
-        for (UserModel userModel : userModelService.findAll());
+        for (User userModel : userModelService.findAll());
         {
-            if (userModelService.loadUserByUsername(username).equals(username)){
+            if (userModelService.toString().equals(username)){
                 userId = getCurrentUserId();
 
             }
