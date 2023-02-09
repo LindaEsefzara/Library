@@ -6,20 +6,22 @@ import com.linda.Library.Model.User;
 import com.linda.Library.Service.UserService;
 import com.linda.Library.authorites.UserRoles;
 import jakarta.validation.Valid;
+import org.apache.el.lang.FunctionMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
+import java.awt.print.Book;
+import java.util.Map;
 
 
 @Controller
-public class UserController<function> {
+@RequestMapping("/Book")
+@ResponseBody
+public class UserController {
     private final UserRepository userRepository;
     private final AppPasswordConfig appPasswordConfig;
     private final UserService userService;
@@ -78,24 +80,11 @@ public class UserController<function> {
     }
 
 
+  @GetMapping("/Book")
+    public String booksDisplayer(){
+        return "Book";
+  }
 
-
-   /* @GetMapping("/Book")
-    function getBooks(){
-        document.getElementById('output').innerHTML="";
-        fetch("http://openlibrary.org/search.json?q="
-                +document.getElementById("input").value)
-                .then(a => a.json())
-                .then(response =>{
-                    for(var i = 0 ; i < response.docs.length ; i++){
-                        document.getElementById("output").innerHTML+="<h2>"
-                                +response.docs[i].title+"</h2>"
-                                +response.docs[i].author_name[0]
-                                +"<br><img src='http://covers.openlibrary.org/b/isbn/"
-                                +response.docs[i].isbn[0]
-                                +"-M.jpg'><br>";        }
-                });
-    }*/
 
 }
 
