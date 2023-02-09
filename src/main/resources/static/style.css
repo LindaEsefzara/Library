@@ -1,0 +1,22 @@
+body{
+background-image:url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.veranda.com%2Ftravel%2Fg28402412%2Fbest-libraries-in-the-world%2F&psig=AOvVaw0ByarHXXr-jeA1cfP-lXvA&ust=1675862944267000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJiy747Cg_0CFQAAAAAdAAAAABAE");
+background-color: #017199;
+height: 100%;
+background-position : center;
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+h2, h1{
+    font-family: 'Righteous', sans-serif;
+
+}
+#header{
+font-size: 3rem;
+}
+
+.book-list{
+margin-top: 50px;
+visibility: hidden;
+
+}
