@@ -9,7 +9,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous" />
-    <link th:href="@{App.js}" rel="stylesheet" />
+
     <style>
        .myImage {
          height: auto;
@@ -22,7 +22,6 @@
 <body>
 
 <div class="container-fluid text-center ">
-    <input type="checkbox" id="flip">
 
     <form th:action="@{/login}"
           method="post"
@@ -53,8 +52,12 @@
                        value="Login"
                        class="btn btn-primary" />
             </div>
+
         </div>
+        
+
     </form>
+
 </div>
 <div class="signup-form">
     <div class="title"></div>
@@ -70,7 +73,6 @@
 
     </form>
 </div>
-
 
 </body>
 </html>

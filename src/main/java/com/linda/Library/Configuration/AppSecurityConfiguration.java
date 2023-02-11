@@ -33,7 +33,7 @@ public class AppSecurityConfiguration {
 
                 .authorizeHttpRequests( requests -> {
                             requests
-                                    .requestMatchers( "/","/login", "/logout" , "/error", "/rest/**", "/register", "/static/**").permitAll()
+                                    .requestMatchers( "/","/login", "/Book","/logout" , "/error", "/rest/**", "/register", "/static/**").permitAll()
                                     .requestMatchers("/admin").hasRole("ADMIN")
                                     .anyRequest()
                                     .authenticated();

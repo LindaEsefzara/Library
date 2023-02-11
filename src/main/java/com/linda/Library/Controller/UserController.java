@@ -19,8 +19,7 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping("/Book")
-@ResponseBody
+
 public class UserController {
     private final UserRepository userRepository;
     private final AppPasswordConfig appPasswordConfig;
@@ -45,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String displayRegisterUser(User user) {    // THIS ARGUMENT MUST EXIST
+    public String displayRegisterUser(User user) {
 
         return "register.html";
     }
@@ -82,9 +81,8 @@ public class UserController {
 
   @GetMapping("/Book")
     public String booksDisplayer(){
-        return "Book";
+        return "Book.html";
   }
-
 
 }
 
