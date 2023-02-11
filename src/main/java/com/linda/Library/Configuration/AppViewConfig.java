@@ -1,6 +1,7 @@
 package com.linda.Library.Configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -26,4 +27,5 @@ public class AppViewConfig implements WebMvcConfigurer {
         registry.addViewController("/admin").setViewName("footer");
 
     }
+
 }

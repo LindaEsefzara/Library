@@ -1,5 +1,6 @@
 package com.linda.Library.authorites;
 
+import org.springframework.security.config.annotation.web.SecurityMarker;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
@@ -9,11 +10,7 @@ import static com.linda.Library.authorites.UserPermissions.ADMIN_WRITE;
 import static com.linda.Library.authorites.UserPermissions.ADMIN_READ;
 import static com.linda.Library.authorites.UserPermissions.USER_READ;
 
-
-
-
 public enum UserRoles {
-    USER(Set.of(USER_READ)),
     ADMIN(Set.of(ADMIN_READ, ADMIN_WRITE));
 
     private final Set<UserPermissions> permissionsList;

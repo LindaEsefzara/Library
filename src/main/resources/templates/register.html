@@ -40,16 +40,6 @@
             <input th:field="*{email}" type="email" placeholder="write your email here...">
         </div>
 
-        <!-- Role Input -->
-        <div class="m-4 dropdown d-flex">
-
-            <select class="btn btn-primary dropdown-toggle" th:field="*{authorities}" >
-                <option class="dropdown-item" th:text="Admin" value="Admin"></option>
-                <option class="dropdown-item" th:text="User" value="User"></option>
-            </select>
-
-        </div>
-
         <div>
             <ul>
                 <li th:each="error : ${#fields.errors('password')}"
