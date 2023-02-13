@@ -1,65 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset='UTF-8'>
-  <div class="container">
-    <div th:id ="title" class="text-center-mt-5">Welcome to your library</div>
-    <div class="row">
-      <div id="search" class="input-group mx-auto col-lg-6 col-md-8 col-sm-12"></div>
-    </div>
-    <input id="input" type="text"><button onclick="getBooks()">Get Books</button><br><div id="output"></div>
-
-  </div>
+  <meta charset="UTF-8">
+  <title>Welcome to Google Books</title>
 </head>
 <body>
-<table border=1>
-  <thead>
-  <tr>
-    <th>title</th>
-    <th>key</th>
-    <th>description</th>
-    <th>location</th>
-    <th>latest_revision</th>
-    <th>revision</th>
-    <th>type.key</th>
-    <th>last_modified.type</th>
-    <th>last_modified.value</th>
-    <th>created.type</th>
-    <th>created.value</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Fantastic Mr Fox</td>
-    <td>/works/OL45804W</td>
-    <td>The main character of Fantastic Mr. Fox is an extremely clever anthropomorphized fox named Mr. Fox. He lives with his wife and four little foxes. In order to feed his family, he steals food from the cruel, brutish farmers named Boggis, Bunce, and Bean every night.
 
-      Finally tired of being constantly outwitted by Mr. Fox, the farmers attempt to capture and kill him. The foxes escape in time by burrowing deep into the ground. The farmers decide to wait outside the hole for the foxes to emerge. Unable to leave the hole and steal food, Mr. Fox and his family begin to starve. Mr. Fox devises a plan to steal food from the farmers by tunneling into the ground and borrowing into the farmer's houses.
+<div class="container">
+  <div th:id ="title" class="text-center-mt-5">Book Finder</div>
+  <div class="row">
+    <div id="search" class="input-group mx-auto col-lg-6 col-md-8 col-sm-12"></div>
+    <input id="serach-box" typ="text" class="form-control" placeholder="Title or author ">
+    <botton id="search" class="btn btn-primary" onclick =""> Click here</botton>
+    <div id="results"></div>
 
-      Aided by a friendly Badger, the animals bring the stolen food back and Mrs. Fox prepares a great celebratory banquet attended by the other starving animals and their families. Mr. Fox invites all the animals to live with him underground and says that he will provide food for them daily thanks to his underground passages. All the animals live happily and safely, while the farmers remain waiting outside in vain for Mr. Fox to show up.</td>
-    <td>/works/OL45883W</td>
-    <td>11</td>
-    <td>11</td>
-    <td>/type/work</td>
-    <td>/type/datetime</td>
-    <td>2022-11-14T19:55:19.965480</td>
-    <td>/type/datetime</td>
-    <td>2009-10-15T11:34:21.437031</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-    <td>&nbsp</td>
-  </tr>
-  </tbody>
-</table>
+  </div>
+
+</div>
+<div class ="book-List">
+  <h2 class ="text-center"> Searche Result</h2>
+  <div id ="list-output" class=""></div>
+  <div class="row">
+
+  </div>
+
+</div>
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous" />
+<link rel="stylesheet" href="text/css" href="css/style.css">
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<script>
+  function.ready(){
+    var item, title, author, publisher, booklink, bookImg
+    var outputlist = ducument.getElmentById("list-output");
+    var bookUrl= "https://www.googleapis.com/books/v1/volumes?q="
+    var placeHldr ='<img src="https://via.placeholder.com/150">'
+    var searchData;
+
+    $("#searche").click(function(){
+            outputlist.innerHTML = ""
+                    searchData=$("#search-box").val();
+                    if(searchData === "" || searchData===null){
+                    displayError();
+            }
+            else{
+                $.ajax({
+                url:bookUrl + searchData,
+                dataType:"json",
+            success: function(res){
+                console.log(res)
+            if(responce.totalItem === 0){
+                alert("no results!");
+            }
+            else{
+                $("title").anitem({'margin-top: 10px'});
+                $("book-list").css('visibility: visible');
+                displayResults(res);
+            }
+    }
+            error: function(){
+            alert("Something went wrong!")
+            }
+        })
+    }
+        $("#serach-box").val("");
+
+    });
+    function displayResults(res){
+        for(var i = 0; i<res.item.length; i+=2)
+        item = res.items[i];
+        title1 = item.volumeInfo.title;
+        author1 = item.volumeInfo.author;
+        publisher1 = item.volumeInfo.publisher;
+        bookIsbn = item.volumeInfo.industryIdentifiers[1].identifier
+        bookImg1 =(item.volumeInfo.imageLinks)? item.volumeInfo.imageLinks.thumbnail:placeHldr;
+
+        item2 = res.items[i+1];
+                title2 = item2.volumeInfo.title;
+                author2 = item2.volumeInfo.author;
+                publisher2 = item2.volumeInfo.publisher;
+                bookIsbn = item2.volumeInfo.industryIdentifiers[1].identifier
+                bookImg2 =(item2.volumeInfo.imageLinks)? item2.volumeInfo.imageLinks.thumbnail:placeHldr;
+
+                output-list.innerHTML += '<div class="row mt-4"' +
+                                        formatOutput(bookImg1, title1, author1,publisher1,booklink1, bookIsbn)
+                                        formatOutput(bookImg2, title2, author2,publisher2,booklink2, bookIsbn)
+                                        '</div>'
+
+    }
+    function formatOutput(bookImg, title, author, publisher,booklink, bookIsbn ){
+        var viewerUrl = 'book.html?isbn=' + bookIsbn;
+        var htmlCard = '<div class ="col-lg-6>
+                            <div class ="card-body">
+                                <h5 class ="card-title">${title}</h5>
+                                <p class ="card-text">Author:${author}</p>
+                                <p class="card-text"> Publisher:{publisher}</p>
+                                <a target"_blank" hrf ="${viewUrl" class = "btn btn-secondary">Ready Book</a>
+                            </div>
+                        </div>'
+        return htmlCard;
+    }
+
+}
+</script>
 </body>
 </html>
